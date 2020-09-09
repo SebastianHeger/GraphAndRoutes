@@ -17,5 +17,6 @@ if __name__ == '__main__':
             image_filepath_input=Path() / 'Input' / 'MAP.png',
             image_filepath_output=Path() / 'Output' / 'GRAPH.png'
         )
-        uninformedAlgorithms.dijksta(graph=graph)
-        informedAlgorithms.a_star(graph=graph)
+        path, cost = uninformedAlgorithms.dijksta(graph=graph)
+        print(path)
+        # informedAlgorithms.a_star(graph=graph)
