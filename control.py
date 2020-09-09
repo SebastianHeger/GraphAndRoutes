@@ -1,5 +1,6 @@
 from pathlib import Path
 import sqlite3
+import random
 
 from Graph import graphCreation
 from Routing import uninformedAlgorithms, informedAlgorithms
@@ -17,6 +18,11 @@ if __name__ == '__main__':
             image_filepath_input=Path() / 'Input' / 'MAP.png',
             image_filepath_output=Path() / 'Output' / 'GRAPH.png'
         )
-        path, cost = uninformedAlgorithms.dijksta(graph=graph)
-        print(path)
+        node_start = random.choice(list(graph.nodes.keys()))
+        node_target = random.choice(list(graph.nodes.keys()))
+        path, cost = uninformedAlgorithms.dijksta(
+            graph=graph,
+            node_start=node_start,
+            node_target=node_target
+        )
         # informedAlgorithms.a_star(graph=graph)

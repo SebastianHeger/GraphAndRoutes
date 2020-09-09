@@ -1,7 +1,7 @@
 import random
 
 
-def dijksta(graph):
+def dijksta(graph, node_start, node_target):
     edges = dict()
     for item in graph.edges:
         node_1 = graph.edges[item]['connection'][0]
@@ -18,8 +18,6 @@ def dijksta(graph):
         else:
             edges[node_2] = [[node_1, distance]]
 
-    node_start = random.choice(list(graph.nodes.keys()))
-    node_target = random.choice(list(graph.nodes.keys()))
     print(f'Route planning from {node_start} to {node_target} with Dijkstra-Algorithm...')
 
     weight_list = {node: 0 for node in graph.nodes}
@@ -37,9 +35,6 @@ def dijksta(graph):
         neighbors = edges[node_active]
         neighbors = [x for x in neighbors if x[0] not in closed_list]
         for neighbor, distance in neighbors:
-            # Cost calculation
-            cost = weight_list[node_active] + distance
-
             # state handling: neighbor in queue
             in_queue = False
             queue_element_temp = []
@@ -48,6 +43,8 @@ def dijksta(graph):
                     in_queue = True
                     queue_element_temp = queue_element
                     break
+
+            cost = weight_list[node_active] + distance
 
             if in_queue:
                 if cost < queue_element_temp[1]:
@@ -63,7 +60,6 @@ def dijksta(graph):
 
         queue.sort(key=lambda x: x[1])
 
-    # path:
     path = [node_target]
     node_active = node_target
     while node_active != node_start:
@@ -71,4 +67,5 @@ def dijksta(graph):
         path.append(node_active)
 
     cost = weight_list[node_target]
+    print(f'Route length {cost} calculated with Dijkstra-Algorithm!')
     return path, cost
