@@ -25,4 +25,8 @@ if __name__ == '__main__':
             node_start=node_start,
             node_target=node_target
         )
-        # informedAlgorithms.a_star(graph=graph)
+        informedAlgorithms.a_star(
+            graph=graph,
+            node_start=node_start,
+            node_target=node_target
+        )

@@ -2,6 +2,7 @@ import random
 
 
 def dijksta(graph, node_start, node_target):
+    print(f'Route planning from {node_start} to {node_target} with Dijkstra-Algorithm...')
     edges = dict()
     for item in graph.edges:
         node_1 = graph.edges[item]['connection'][0]
@@ -17,8 +18,6 @@ def dijksta(graph, node_start, node_target):
             edges[node_2].append([node_1, distance])
         else:
             edges[node_2] = [[node_1, distance]]
-
-    print(f'Route planning from {node_start} to {node_target} with Dijkstra-Algorithm...')
 
     weight_list = {node: 0 for node in graph.nodes}
     precursors = {node: None for node in graph.nodes}
